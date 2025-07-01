@@ -47,7 +47,7 @@ local function GetIcon(IconName)
 end   
 
 local Orion = Instance.new("ScreenGui")
-Orion.Name = "c00lgui v3 B)"
+Orion.Name = "Orion"
 if syn then
 	syn.protect_gui(Orion)
 	Orion.Parent = game.CoreGui
@@ -224,7 +224,7 @@ local function LoadCfg(Config)
 				end    
 			end)
 		else
-			warn("c00lgui Config Loader - Could not find ", a ,b)
+			warn("Orion Library Config Loader - Could not find ", a ,b)
 		end
 	end)
 end
@@ -470,14 +470,14 @@ function OrionLib:MakeWindow(WindowConfig)
 	local UIHidden = false
 
 	WindowConfig = WindowConfig or {}
-	WindowConfig.Name = WindowConfig.Name or "loading GUI.."
+	WindowConfig.Name = WindowConfig.Name or "Orion Library"
 	WindowConfig.ConfigFolder = WindowConfig.ConfigFolder or WindowConfig.Name
 	WindowConfig.SaveConfig = WindowConfig.SaveConfig or false
 	WindowConfig.HidePremium = WindowConfig.HidePremium or false
 	if WindowConfig.IntroEnabled == nil then
 		WindowConfig.IntroEnabled = true
 	end
-	WindowConfig.IntroText = WindowConfig.IntroText or "loading GUI.."
+	WindowConfig.IntroText = WindowConfig.IntroText or "Orion Library"
 	WindowConfig.CloseCallback = WindowConfig.CloseCallback or function() end
 	WindowConfig.ShowIcon = WindowConfig.ShowIcon or false
 	WindowConfig.Icon = WindowConfig.Icon or "rbxassetid://8834748103"
@@ -1694,9 +1694,37 @@ function OrionLib:MakeWindow(WindowConfig)
 					Size = UDim2.new(0, 56, 0, 56),
 					Position = UDim2.new(0, 84, 0, 110),
 				}), "Text"),
+				AddThemeObject(SetProps(MakeElement("Label", "Premium Features", 14), {
+					Size = UDim2.new(1, -150, 0, 14),
+					Position = UDim2.new(0, 150, 0, 112),
+					Font = Enum.Font.GothamBold
+				}), "Text"),
+				AddThemeObject(SetProps(MakeElement("Label", "This part of the script is locked to Sirius Premium users. Purchase Premium in the Discord server (discord.gg/sirius)", 12), {
+					Size = UDim2.new(1, -200, 0, 14),
+					Position = UDim2.new(0, 150, 0, 138),
+					TextWrapped = true,
+					TextTransparency = 0.4
+				}), "Text")
+			})
+		end
+		return ElementFunction   
+	end  
 
 function OrionLib:Destroy()
 	Orion:Destroy()
 end
 
 return OrionLib
+local Window = OrionLib:MakeWindow({Name = "coolgui v3", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
+
+--[[
+Name = <coolgui v3> - The name of the UI.
+HidePremium = <false> - Whether or not the user details shows Premium status or not.
+SaveConfig = <true> - Toggles the config saving in the UI.
+ConfigFolder = <OrionTest> - The name of the folder where the configs are saved.
+IntroEnabled = <true> - Whether or not to show the intro animation.
+IntroText = <loading GUI...> - Text to show in the intro animation.
+IntroIcon = <string> - URL to the image you want to use in the intro animation.
+Icon = <string> - URL to the image you want displayed on the window.
+CloseCallback = <function> - Function to execute when the window is closed.
+]]
